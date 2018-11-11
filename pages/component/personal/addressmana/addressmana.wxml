@@ -1,0 +1,49 @@
+<!--pages/addressmana/addressmana.wxml-->
+<!-- 导入加载中模块 -->
+<import src="../../../template/load/load.wxml"/>
+
+<scroll-view wx:if="{{loading_all==true}}" style="padding-top: 45%;height: 100%">
+  <template is="loading"/>
+</scroll-view>
+<scroll-view wx:else class="address_main">
+  <!-- 新增收货地址Btn -->
+  <view class="addNewAddress_style" bindtap="addNewAddress">
+    <button>新增收货地址</button>
+  </view>
+
+  <!-- 地址管理页面地址为空 -->
+  <view wx:if="{{addresses == null || addresses.length == 0}}" class="empty_sign">
+    <view>
+      <image src="{{address_empty_icon}}" class="empty_icon"/>
+      <view>
+        <text>请点击底部添加地址</text>
+      </view>
+    </view>
+  </view>
+  <!-- 地址不为空 -->
+  <view wx:else>
+    <view wx:for="{{addresses}}" wx:for-index="index" wx:for-item="item" wx:key="unique"
+          class="address_single">
+      <view class="body_top">
+        <view class="body_top_t">
+          <text>{{item.consigneeName}}</text>
+          <text>{{item.phoneNum}}</text>
+        </view>
+        <view class="body_top_b">
+          <text>{{item.province}} {{item.city}} {{item.county}} {{item.detailLocation}}</text>
+        </view>
+      </view>
+      <view style="width: 100%;height:1px;border:none;border-top:1px dashed #dddddd"></view>
+      <view class="body_bottom">
+        <view >
+          <image src="{{item.isDefault==1 ? defaulted : no_defaulted}}" style="width: 16px;height: 16px;" data-index="{{index}}" bindtap="defaultAddress"/>
+          <text data-index="{{index}}" bindtap="defaultAddress">设为默认</text>
+        </view>
+        <view style="width:30%;color: #A52A2A;display:flex;justify-content: space-between">
+          <text bindtap="editAddress" data-index="{{index}}" >编辑</text>
+          <text bindtap="deleteAddress" data-index="{{index}}">删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

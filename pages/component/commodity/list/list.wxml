@@ -1,0 +1,89 @@
+
+<!-- 导入加载中模块 -->
+<import src="../../../template/load/load.wxml"/>
+
+<!-- 判断loading -->
+<scroll-view wx:if="{{loading_all}}" style="padding-top: 45%;height: 100px">
+    <template is="loading"/>
+</scroll-view>
+<scroll-view wx:elif="{{loading_all==false && nodata == true}}">
+    <!-- 没数据... -->
+    没数据.....
+</scroll-view>
+<!-- 滚动block列表 -->
+<scroll-view wx:else
+             class="list"
+             enable-back-to-top = "true"
+             upper-threshold="{{upper_threshold}}"
+             lower-threshold="{{lower_threshold}}"
+             bindscrolltolower="scrolltolower"
+             scroll-top="{{scrollUpNum}}"
+             bindscroll="scroll"
+             scroll-y="true">
+    <!-- 返回顶部 -->
+    <!--
+    <view class="{{showUp?'upblock':'upblock_hide'}}" bindtap="toUp">
+        <image src="{{upicon}}"/>
+    </view>
+    -->
+    <!-- 改变block显示方式图标 -->
+    <!--<view class="categoryblock" bindtap="changeShow">
+        <image src="{{showScheme}}"/>
+    </view>-->
+    <view class="produce">
+        <block wx:for="{{produces}}" wx:for-item="item" wx:for-index="idx" wx:key="k">
+            <!-- block显示: 商品 -->
+            <view wx:if="{{blockScheme==true}}" class="comm_block" data-id="{{item.id}}" bindtap="commDetail">
+                <image src ="{{picPrefixUrl + item.thumbPicUrl}}"/>
+                <view class="commName">{{item.commodityName}}</view>
+                <view class="down_block">
+                    <view style="font-size: 90%;color: #999999">销量:{{item.sellsCount}}</view>
+                    <view><text style="color: #ff6600">{{item.price}}元</text></view>
+                </view>
+            </view>
+            <!-- list显示: 商铺 -->
+            <view wx:else class="comm_list" >
+                <view class="comm_list" >
+                    <view class="comm_list_b" style="height: 70%;" data-id="{{item.id}}" bindtap="shopDetail">
+                        <image src ="{{picPrefixUrl + item.thumbPicUrl}}"/>
+                        <view class="right_list">
+                            <view class="right_top">
+                                <view class="commName">{{item.shopName}}</view>
+                                <view class="shop_level">
+                                    <block wx:for="{{item.starLevel}}" wx:key="index">
+                                        <image id='{{index+1}}' data-in='full' src='../../../../imgs/starf.png'></image>
+                                    </block>
+                                    <block wx:for="{{5 - item.starLevel}}" wx:key="index">
+                                        <image id='{{index+1}}' data-in='empty' src='../../../../imgs/stare.png'></image>
+                                    </block>
+                                </view>
+                            </view>
+                            <view class="introduction" style="font-size: 80%"><text>{{item.shortIntroduction}}</text></view>
+                            <view style="display: flex;flex-direction:row;justify-content:flex-end;font-size:70%;color: #999999">总销量:{{item.sellsCount}}</view>
+                        </view>
+                    </view>
+                </view>
+
+               <!-- <view class="comm_list_b" data-id="{{item.id}}" bindtap="shopDetail">
+                    <image src ="{{picPrefixUrl + item.thumbPicUrl}}"/>
+                    <view class="right_list">
+                        <view class="right_top">
+                            <view>{{item.shopName}}</view>
+                            <view>{{item.starLevel}}</view>
+                        </view>
+                        <view class="introduction" style="font-size: 80%">{{item.shortIntroduction}}</view>
+                    </view>
+                </view>-->
+
+            </view>
+        </block>
+    </view>
+
+    <!-- loading -->
+    <view wx:if="{{loading==true}}" class="bottom_tip">
+        <template is="loading"/>
+    </view>
+    <view wx:else class="bottom_tip" style="height:100%">
+        <text style="justify-content:center;width: 100%">-到底了哦-</text>
+    </view>
+</scroll-view>

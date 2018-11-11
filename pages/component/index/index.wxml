@@ -1,0 +1,187 @@
+<!-- 导入加载中模块 -->
+<import src="../../template/load/load.wxml"/>
+
+<!-- 顶部搜索栏 -->
+<view class="top_search_bar">
+  <view class="search_left" >
+    <image src="/imgs/search.png"/>
+    <form bindsubmit="wxSearchFn"
+          style="flex-direction: row;width: 100%; ">
+      <view style="display: flex;flex-wrap: nowrap;flex-direction: row">
+        <input type="text" placeholder="搜索商品/商铺"
+               bindinput="wxSearchInput"
+               bindfocus="wxSearchFocus" value="{{wxSearchData.value}}"
+               bindblur="wxSearchBlur" style="font-size:80%;width: 85%"
+               confirm-type = "search"
+               maxlength="40"/>
+        <view class="{{barFocused?'search_right_btn':'search_right_btn_hide'}}">
+          <text bindtap="wxSearchFn"
+                style="font-size: 90%;padding-top: 3%;padding-left:2%;padding-right:1px;color: #09bb07;" >Go</text>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>
+
+<!-- 搜索栏的热门&历史block -->
+<view class="wxSearch" bindtap="wxSearchTap"
+      style="display:{{wxSearchData.view.isShow?'block':'none'}};height:100%;">
+  <view  class="wxSearchInner">
+    <view class="wxSearchMindKey">
+      <view class="wxSearchMindKeyList">
+        <block wx:for="{{wxSearchData.mindKeys}}" wx:key="unique">
+          <view class="wxSearchMindKeyItem" bindtap="wxSearchKeyTap" data-key="{{item}}">{{item}}</view>
+        </block>
+      </view>
+    </view>
+
+    <view class="wxSearchKey" style="display:{{wxSearchData.view.isShowSearchKey?'block':'none'}}">
+      <text class="wxSearchTitle">热门搜索</text>
+      <view class="wxSearchKeyList">
+        <block wx:for="{{wxSearchData.keys}}" wx:key="unique">
+          <view class="wxSearchKeyItem" bindtap="wxSearchKeyTap" data-key="{{item}}">{{item}}</view>
+        </block>
+      </view>
+    </view>
+
+    <view class="wxSearchHistory" style="display:{{wxSearchData.view.isShowSearchHistory?'block':'none'}}">
+      <text class="wxSearchTitle">搜索历史</text>
+      <view wx:if="{{wxSearchData.his[0]}}" class="wxSearchHistoryList">
+        <block wx:for="{{wxSearchData.his}}" wx:key="k">
+          <view class="wxSearchHistoryItem">
+            <text class="wxSearchHistoryItemText" bindtap="wxSearchKeyTap" data-key="{{item}}">{{item}}</text>
+            <image src="/imgs/delete.png"  bindtap="wxSearchDeleteKey" data-key="{{item}}" data-key="{{item}}"/>
+          </view>
+        </block>
+        <view class="wxSearchDeleteAllBtn" bindtap="wxSearchDeleteAll">清除历史</view>
+      </view>
+      <view wx:else>
+        <view class="wxSearchHistoryEmpty">搜索历史为空</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<scroll-view wx:if="{{loading}}" style="padding-top: 45%;height: 55%">
+  <template is="loading"/>
+</scroll-view>
+<!-- 总的scroll-view -->
+<scroll-view wx:else scroll-y="true" class="main" bindscroll="scrollFn">
+
+    <!-- swiper轮播图 -->
+    <swiper indicator-dots="{{indicatorDots}}"
+            autoplay="{{autoPlay}}"
+            interval="{{interval}}"
+            duration="{{duration}}"
+            style="height:60%;top: 0;">
+      <block wx:for="{{scrollPic}}" wx:key ="unique" wx:for-item="item" wx:key="unique">
+        <swiper-item>
+          <image src="{{item.url}}" data-src="{{item}}" bindtap="swiperTap" style="position:absolute;height: 100%;width: 100%"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!-- 明星单品 -->
+    <view class="super_star_commodities">
+      <!-- 头部 -->
+      <view class="header">
+        <view>明星单品</view>
+        <view style="font-family:SimHei;font-size: 90%" bindtap="gotoStarList">more ></view>
+      </view>
+      <!-- 内容 -->
+      <view class="content">
+        <!-- 内容块的顶部块 -->
+        <view class="content_top"  >
+          <view class="content_top_v" >
+            <image src="{{picPrefix + starCommodities[0].thumbPicUrl}}" data-src="{{starCommodities[0]}}" bindtap="commodityTap"/>
+          </view>
+          <view class="content_top_text" data-src="{{starCommodities[0]}}" bindtap="commodityTap">{{starCommodities[0].shortIntroduction}}</view>
+        </view>
+        <!-- 内容块的下部块 -->
+        <view class="content_bottom">
+          <view class="content_mini" data-id="{{starCommodities[1].id}}"
+                data-type="commodity" >
+            <image src="{{picPrefix + starCommodities[1].thumbPicUrl}}" style="height: 100%;width: 100%" data-src="{{starCommodities[1]}}" bindtap="commodityTap"/>
+            <view class="content_top_text" data-src="{{starCommodities[1]}}" bindtap="commodityTap">{{starCommodities[1].shortIntroduction}}</view>
+          </view>
+          <view style="width: 0.5%"></view>
+          <view class="content_mini" data-id="{{starCommodities[2].id}}"
+                data-type="commodity" >
+            <image src="{{picPrefix + starCommodities[2].thumbPicUrl}}" style="height: 100%;width: 100%"  data-src="{{starCommodities[2]}}" bindtap="commodityTap"/>
+            <view class="content_top_text" data-src="{{starCommodities[2]}}" bindtap="commodityTap">{{starCommodities[2].shortIntroduction}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 最新上线 -->
+    <view class="new_commodities">
+      <!-- 头部 -->
+      <view class="header">
+        <view>最新上线</view>
+        <view style="font-family:SimHei;font-size: 90%" bindtap = "gotoNewsList">more ></view>
+      </view>
+      <!-- 内容 -->
+      <view class="content">
+        <!-- 内容块的顶部块 -->
+        <view class="content_top">
+          <view class="content_top_v">
+            <image src="{{picPrefix + newCommodities[0].thumbPicUrl}}" data-src="{{newCommodities[0]}}" bindtap="commodityTap"/>
+          </view>
+          <view class="content_top_text" data-src="{{newCommodities[0]}}" bindtap="commodityTap">{{newCommodities[0].shortIntroduction}}</view>
+        </view>
+        <!-- 内容块的下部块 -->
+        <view class="content_bottom">
+          <view class="content_mini" >
+            <view class="content_mini_v">
+              <image src="{{picPrefix + newCommodities[1].thumbPicUrl}}"  data-src="{{newCommodities[1]}}" bindtap="commodityTap" />
+            </view>
+            <view class="content_top_text"  data-src="{{newCommodities[1]}}" bindtap="commodityTap">{{newCommodities[1].shortIntroduction}}</view>
+          </view>
+          <view style="width: 0.5%"></view>
+          <view class="content_mini">
+            <view class="content_mini_v">
+              <image src="{{picPrefix + newCommodities[2].thumbPicUrl}}"  data-src="{{newCommodities[2]}}" bindtap="commodityTap" />
+            </view>
+            <view class="content_top_text"  data-src="{{newCommodities[2]}}" bindtap="commodityTap">{{newCommodities[2].shortIntroduction}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 店铺 -->
+    <view class="star_shop">
+      <view class="header">
+        <view>推荐店铺</view>
+        <view style="font-family:SimHei;font-size: 90%" bindtap="goToShopList">more ></view>
+      </view>
+      <scroll-view scroll-x style="position:absolute; width:100%;height:100%;white-space: nowrap;" >
+        <block wx:for="{{shopInfo}}"
+               wx:for-item="item" wx:for-index="idx" wx:key="unique">
+          <image data-src="{{item}}" src="{{picPrefix + item.thumbPicUrl}}" class="shop_block" bindtap="shopTap">
+            <view class="shop_level">
+              <block wx:for="{{item.starLevel}}" wx:key="index">
+                <image id='{{index+1}}' data-in='full' src='../../../imgs/starf.png'></image>
+              </block>
+              <block wx:for="{{5 - item.starLevel}}" wx:key="index">
+                <image id='{{index+1}}' data-in='empty' src='../../../imgs/stare.png'></image>
+              </block>
+            </view>
+          </image>
+        </block>
+      </scroll-view>
+    </view>
+
+    <!-- tips -->
+    <view class="bottom_tips">
+      <view class="tips">
+        <view class="tip" bindtap="aboutUs">关于我们</view>
+        <view class="tip" bindtap="approval">申请入驻</view>
+        <view class="tip" bindtap="contactUs">联系我们</view>
+      </view>
+    </view>
+  </scroll-view>
+
+
+
+

@@ -1,0 +1,51 @@
+@import "../../../template/load/load.wxss";
+page{
+    background-color: #eeeeee;
+    height: 100%;
+}
+
+.evaluation{
+    padding-bottom: 2%;
+    padding-left: 5%;
+    padding-right: 2%;
+    background-color: white;
+    border: solid #8C8C8C 1px;
+    border-radius: 10px;
+    font-size: 80%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.base{
+    padding-bottom: 2%;
+}
+
+.evalu_header_top{
+    border-bottom: #aaaaaa dotted 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.evalu_header_top image{
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.evalu_header{
+    padding-top: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.shop_level{
+    display: flex;
+    flex-direction: row;
+}
+
+.shop_level image{
+    height: 30rpx;
+    width: 30rpx;
+}

@@ -1,0 +1,58 @@
+.container{
+  width: 100%;
+  height: 100%;
+
+  background-color: burlywood;
+  background-repeat: repeat;
+}
+
+.item{
+  width: 100rpx;
+  background-color: red;
+  border: solid 1px lightblue;
+  flex-grow: 1;
+  flex-shrink: 10;
+
+  margin:20rpx; /** 外边距 */
+  border-radius: 50px;
+}
+
+.item1{
+  width: 100rpx;
+  background-color: red;
+  border: solid 1px lightblue;
+  flex-grow: 1;
+  flex-shrink: 10;
+
+  border-radius: 20px;
+
+  /** 相对自己定位 */
+  position:relative;
+  left: 50rpx;
+  top: 10rpx; 
+
+  /** 绝对定位，相对离自己最近的父级元素 */
+  /* position:absolute;
+  left:50px;
+  top: 10px; */
+}
+
+.scroll-view-item{
+  height: 100px;
+}
+
+.bc_green{
+  background-color: green;
+}
+
+.bc_red{
+  background-color:red;
+}
+
+.bc_yellow{
+  background-color: yellow;
+}
+
+.bc_blue{
+  background-color: blue;
+}

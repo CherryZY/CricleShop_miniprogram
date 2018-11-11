@@ -1,0 +1,88 @@
+<!--pages/cart/cart.wxml-->
+<!-- 导入加载中模块 -->
+<import src="../../../template/load/load.wxml"/>
+
+<scroll-view wx:if="{{loading_all}}" style="height: 100px;padding-top: 45%">
+  <!-- 导入加载中模块 -->
+  <template is="loading"/>
+</scroll-view>
+<scroll-view wx:else>
+  <!-- 用户已登录 -->
+  <block wx:if="{{ carts != ''}}" class="cart_main">
+    <form bindsubmit="submit_pay_it">
+      <view class="body">
+        <!-- 购物车列表 -->
+        <view class="carts-list">
+          <view wx:for="{{carts}}" wx:key="unique" class="carts-item" data-title="{{item.name}}" data-url="{{item.url}}"
+                bindtap="bindViewTap">
+            <!-- 复选框 -->
+            <view class="carts-radio">
+              <icon wx:if="{{item.isSelect}}" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}" />
+              <icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}" />
+            </view>
+            <!-- 商品信息 -->
+            <view class="carts-cnt" bindtap="">
+              <image class="carts-image" src="{{picPrefixUrl + item.thumbPic[0].url}}" mode="aspectFill" />
+              <view class="carts-info">
+                <view class="carts-title clamp2 commodi">{{item.commodityName}}</view>
+                <!--<view class="carts-properties">颜色：黑色|尺码：S</view>-->
+                <view class="carts-subtitle">
+                  <text class="carts-price c--f60">￥{{item.price}}</text>
+                </view>
+              </view>
+            </view>
+            <!-- 数量加减 -->
+            <block wx:if="{{editCart == true}}">
+              <view class="carts-num">
+                <text class="minus {{minusStatuses[index]}}" data-index="{{index}}" data-type="-" bindtap="bindCartNum">-</text>
+                <input type="number" data-index="{{index}}" bindinput="bindIptCartNum" value="{{item.count}}" disabled/>
+                <text class="plus normal" data-index="{{index}}" data-type="+" bindtap="bindCartNum">+</text>
+              </view>
+              <!-- 删除 -->
+              <icon class="carts-del" type="clear" size="16" color="#ccc" data-index="{{index}}" bindtap="bindCartsDel" />
+            </block>
+            <block wx:else>
+              <view class="carts-num shown">
+                <text class="shown_text">x {{item.count}}</text>
+              </view>
+            </block>
+
+          </view>
+          <view style="margin-bottom: 5%"></view>
+        </view>
+
+        <!-- 顶部编辑框 -->
+        <view class="edit_bar">
+          <text class="hint_info">{{topBarHintInfo}}</text>
+          <text class="edit_btn" bindtap="editAction">{{showAction}}</text>
+        </view>
+
+        <!-- 底部全选栏 -->
+        <view class="choose_all_bar">
+          <view class="choose_all">
+            <view bindtap="bindSelectAll" class="choose_all_icon">
+              <icon wx:if="{{selectedAllStatus}}" type="success_circle" size="20" />
+              <icon wx:else type="circle" size="20" />
+            </view>
+            <text class="choose_all_txt">全选</text>
+            <text style="color: forestgreen;">总计:￥{{totalPrice}} ({{selectedNum}})件</text>
+            <button type="primary" form-type="submit" size="mini">付款</button>
+          </view>
+        </view>
+
+      </view>
+    </form>
+  </block>
+
+  <!-- 用户未登录/购物车为空 -->
+  <block wx:else>
+    <view class="go_shopping">
+      <image class="go_shopping_img" src="{{cart_empty}}"></image>
+      <view>
+        <text class="go_shopping_txt">您的购物车没有商品</text>
+        <button class="go_shopping_btn" bindtap="goShopping">去购物</button>
+      </view>
+    </view>
+  </block>
+
+</scroll-view>

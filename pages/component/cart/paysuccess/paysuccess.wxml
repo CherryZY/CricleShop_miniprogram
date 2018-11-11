@@ -1,0 +1,9 @@
+
+<view class="p_s_main">
+    <view class="middle">
+        <view class="img">
+            <image src="/imgs/pay_success.png" style="width: 100px;height: 100px;"/>
+        </view>
+        <text>支付成功</text>
+    </view>
+</view>

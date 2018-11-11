@@ -1,0 +1,152 @@
+/* pages/cart/cart.wxss */
+@import "../../../template/load/load.wxss";
+
+.c--f60{color: #f60;}
+.clamp1, .clamp2, .clamp3{display: -webkit-box!important; overflow: hidden; -webkit-box-orient: vertical;}
+.clamp1{-webkit-line-clamp:1;}
+.clamp2{-webkit-line-clamp:2;}
+.clamp3{-webkit-line-clamp:3;}
+
+.carts-list{padding: 10rpx 20rpx; margin-bottom: 5%;margin-top: 50rpx; border-bottom: #dddddd solid 1px}
+.carts-list .carts-item{border-top: 1rpx solid #e3e3e3; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; padding: 20rpx 10rpx; width: 100%; position: relative;}
+.carts-list .carts-item:nth-child(1){border-top: 0;}
+.carts-item .carts-cnt{
+  flex: 1; padding: 0 20rpx;
+  width: 50%;
+}
+.carts-cnt .carts-image{float:left; margin-right: 20rpx; height: 150rpx; width: 150rpx;}
+.carts-cnt .carts-info{display: flex; flex-direction: column; justify-content: space-between; min-height: 150rpx;}
+.carts-cnt .carts-title{
+  font-size: 28rpx;
+}
+.commodi{
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.carts-cnt .carts-subtitle{display: flex; flex-direction: row; font-size: 28rpx;}
+.carts-list .carts-item .carts-del{position: absolute; top: 20rpx; right: 10rpx;}
+
+.carts-properties{display: flex;flex-direction: row;font-size: 20rpx;color: #999999}
+
+/*数量加减*/
+.carts-num{border: 1rpx solid #aaa; border-radius: 5rpx; display: flex; align-items: center; align-self: flex-end; text-align: center; height: 50rpx;}
+.carts-num input{border-left: 1rpx solid #aaa; border-right: 1rpx solid #aaa; font-size: 30rpx; font-family: arial; height: 50rpx; line-height: 50rpx; width: 80rpx;}
+.carts-num .minus, .carts-num .plus{
+  color: #000;
+  text-align: center;
+  line-height: 50rpx;
+  width: 40rpx;
+}
+.carts-num .minus{font-size: 30rpx;}
+.carts-num .minus.disabled{color: #8C8C8C;}
+.carts-num .minus.normal{color: #ff6600;}
+.carts-num .plus{font-size: 34rpx;}
+
+.shown{border: 0rpx;display: flex;align-self: flex-start;}
+
+.shown_text{color: #999999; font-size: 17px}
+
+.cart_main{
+  position: relative;
+}
+
+/* 购物车有商品且用户已登录---全选栏 */
+.choose_all_bar{
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+}
+
+.choose_all{
+  position: relative;
+  border-bottom: #dddddd 1px solid;
+  border-top: solid #ddd 0px;
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 10%;
+  bottom: 0px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-top: 8px;
+  font-size: 16px;
+}
+
+.choose_all text{
+  position: fixed;
+  right: 25%;
+  bottom: 13px;
+}
+
+.choose_all_txt{
+  position: fixed;
+  left: 10%;
+  color: #000000;
+}
+
+.choose_all button{
+  position: fixed;
+  padding-top: 0px;
+  margin-bottom: 5px;
+  width: 20%;
+  bottom: 0px;
+  right: 5px;
+}
+
+/* 编辑框栏 */
+.edit_bar{
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 5%;
+  background-color: #eeeeee;
+  top: 0px;
+  right: 0px;
+}
+
+.edit_bar .hint_info{
+  display: flex;
+  align-self: center;
+  padding-left: 5%;
+  font-size: 15px;
+}
+
+.edit_bar .edit_btn{
+  padding-top: 1%;
+  padding-right: 2%;
+  padding-left: 2%;
+  font-size: 75%;
+  color: #dddddd;
+  background-color: #000000;
+}
+
+/* 购物车没有物品/用户未登录 */
+.go_shopping{
+  margin-top: 50%;
+  text-align: center;
+}
+
+.go_shopping_img{
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.go_shopping_txt{
+  font-size: 16px;
+  padding-bottom: 10px;
+}
+
+.go_shopping_btn{
+  width: 35%;
+  color: #ffffff;
+  background-color: #707070;
+  border-radius: 12px;
+  border-top: white solid 5px;
+}
+

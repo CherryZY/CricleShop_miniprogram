@@ -1,0 +1,8 @@
+
+
+<template name = "loading" style="color: #999999;">
+    <view class="loadingOrder">
+        <view class="loader-19">
+        </view>
+    </view>
+</template>

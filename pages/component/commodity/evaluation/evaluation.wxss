@@ -1,0 +1,101 @@
+@import "../../../template/load/load.wxss";
+
+page{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+.main{
+    background-color: white;
+}
+
+.evaluations{
+    background-color: white;
+    padding-bottom: 2%;
+}
+
+.evaluate{
+    display: flex;
+    flex-direction: column;
+    padding-right: 2%;
+    border-bottom: solid 1px #dddddd;
+}
+
+.evaluate_detail{
+    padding-right: 2%;
+    padding-left: 5%;
+}
+
+.user_name{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.evalu_body{
+    padding-top: 2%;
+    padding-left: 2%;
+}
+
+.evalu_title{
+    font-size: 90%;
+}
+
+.evalu_content{
+    font-size: 80%;
+}
+
+.evalu_pics{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 2%;
+    padding-right: 2%;
+    white-space: pre-wrap;
+    flex-wrap: wrap;
+}
+
+.evalu_pic{
+}
+
+.evalu_pic image{
+    border: #eeeeee solid 1px;
+    width: 250rpx;
+    height: 250rpx;
+}
+
+
+.evalu_time{
+    color: #999999;
+    border-top: #dddddd dotted 1px;
+    font-size: 70%;
+}
+
+/** 顶部总评价 */
+.top_sum_evaluation{
+    background-color: white;
+    border-bottom: #8C8C8C solid 1px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+/** 评价们的List */
+.last_evaluation_list{
+    background-color: white;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 3%;
+    padding-bottom: 5%;
+    margin-top: 2%;
+}
+
+.shop_level{
+    display: flex;
+    flex-direction: row;
+}
+
+.shop_level image{
+    height: 30rpx;
+    width: 30rpx;
+}

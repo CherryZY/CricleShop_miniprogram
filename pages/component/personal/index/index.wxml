@@ -1,0 +1,91 @@
+<view class="main">
+  <view class="header" bindtap="relogin">
+    <image src="{{personInfo.avatarUrl}}" class="avatar" />
+    <text class="nick_name">{{personInfo.nickName}}</text>
+  </view>
+
+  <view class="content_row">
+    <view>
+      <image src="{{order_list_icon}}" class="right"/>
+      <text class="content_name" > 全部订单</text>
+    </view>
+    <view bindtap='viewMyOrders' class="right_icon">
+      <text class="my_orders_row">我的订单</text>
+      <image src='{{triangle_icon}}' class="right"/>
+    </view>
+  </view>
+
+  <!--<view class="wait_status">
+    <view bindtap='wait_pay' class="wait_statu_view">
+      <image class="wait_statu_img" src='{{wait_pay_icon}}'/>
+      <view class="wait_statu_text">
+        <text>待付款</text>
+      </view>
+    </view>
+    <view bindtap='wait_trans' class="wait_statu_view">
+      <image class="wait_statu_img" src='{{wait_trans_icon}}'/>
+      <view class="wait_statu_text">
+        <text>待发货</text>
+      </view>
+    </view>
+    <view bindtap='wait_reci' class="wait_statu_view">
+      <image class="wait_statu_img" src='{{wait_reci_icon}}'/>
+      <view class="wait_statu_text">
+        <text>待收货</text>
+      </view>
+    </view>
+  </view>-->
+
+  <!-- 地址管理 -->
+  <view class="content_row" bindtap='addressMan'>
+    <view>
+        <image src='{{location_icon}}' class="right"/>
+        <text class='content_name'> 地址管理</text>
+    </view>
+    <view class="right_icon">
+      <image class="right" src='{{triangle_icon}}'/>
+    </view>
+  </view>
+
+  <!-- 商品收藏 -->
+  <view class="content_row" bindtap='collection'>
+    <view>
+      <image src='{{collection_icon}}' class="right"/>
+      <text class='content_name'> 收藏</text>
+    </view>
+    <view class="right_icon">
+      <image class="right" src='{{triangle_icon}}'/>
+    </view>
+  </view>
+
+  <!-- 设置 -->
+  <!--<view class='content_row' bindtap="setting">
+    <view>
+        <image src='{{setting_icon}}' class="right"/>
+        <text class='content_name'> 设置</text>
+    </view>
+    <view class="right_icon">
+      <image class="right" src='{{triangle_icon}}'/>
+    </view>
+  </view>-->
+
+  <!-- 关于 -->
+  <view class="content_row" bindtap='about'>
+    <view>
+      <image src='{{about_icon}}' style='width:16px;height:16px;'/>
+      <text class='content_name'> 关于</text>
+    </view>
+  </view>
+
+  <view style="padding-top: 30%"></view>
+
+  <!-- 入驻 -->
+  <view class="bottom_tips">
+    <view class="tips">
+      <view class="tip" bindtap="aboutUs">关于我们</view>
+      <view class="tip" bindtap="approval">申请入驻</view>
+      <view class="tip" bindtap="contactUs">联系我们</view>
+    </view>
+  </view>
+
+</view>

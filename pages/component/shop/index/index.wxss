@@ -1,0 +1,201 @@
+/* pages/component/shop/index/index.wxss */
+@import "../../../template/load/load.wxss";
+
+page{
+    width: 100%;
+    height: 100%;
+}
+
+.main{
+    position:relative;
+    height: 100%;
+    width: 100%;
+}
+
+.header{
+    height: 23%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    border-bottom: black solid 0.5px;
+}
+
+.header_top{
+    height: 85%;
+    width: 100%;
+}
+
+.header_navigation{
+    height: 13%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 90%;
+    background-color: #eeeeee;
+}
+
+.header_navigation_fixed{
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 90%;
+    background-color: #eeeeee;
+}
+
+.navigation_choosed{
+    border-bottom: black solid 2px;
+}
+
+.shop_avatar{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.shop_avatar_block{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+}
+
+.shop_avatar_img{
+    margin-top: 10%;
+    margin-left: 7%;
+    margin-right: 5%;
+    width: 21%;
+    height: 55%;
+}
+
+.shop_avatar_img image{
+    height: 100%;
+    width: 100%;
+    border-radius: 20%;
+    border: 1px solid #000000;
+}
+
+.shop_level{
+    display: flex;
+    flex-direction: row;
+}
+
+.shop_level image{
+    height: 30rpx;
+    width: 30rpx;
+}
+
+/** 店铺信息 */
+.shop_info{
+    width: 50%;
+    margin-top: 10%;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.shopName{
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.shop_introduction{
+    font-size: 70%;
+    color: #707070;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+
+/** 联系我们 */
+.shop_contact{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 5%;
+}
+
+/** 收藏店铺 */
+.shop_star{
+    margin-top: 5%;
+    margin-right: 5%;
+    position: relative;
+}
+
+.shop_star image{
+    width: 50rpx;
+    height: 46rpx;
+    position: absolute;
+    right: 1px;
+}
+
+/** 主页 */
+.shopDetail{
+    width: 100%;
+    height: 100%;
+}
+
+.shopDetail image{
+    width: 100%;
+}
+
+/** 产品 */
+.produce{
+    padding-top: 2%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+
+.shop_main{
+    width: 100%;
+    height: 70%;
+}
+
+/** production block */
+.produce_item{
+    width: 40%;
+    height: 350rpx;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.produce_item image{
+    border-radius: 10px;
+    width: 99%;
+    height: 80%;
+}
+
+.commName{
+    font-size: 80%;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.down_block{
+    padding-top: 1%;
+    padding-right: 4%;
+    font-size: 80%;
+    height: 22%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

@@ -1,0 +1,32 @@
+@import "../../../template/load/load.wxss";
+page{
+    background-color: #dddddd;
+    height: 100%;
+}
+
+.newEvaluation{
+    background-color: white;
+    border: #eeeeee solid 1px;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+}
+
+.title{
+    border-top: #aaaaaa dotted 1px;
+}
+
+.sub_btn{
+    padding-top: 40%;
+}
+
+.shop_level{
+    display: flex;
+    flex-direction: row;
+}
+
+.shop_level image{
+    height: 50rpx;
+    width: 50rpx;
+}

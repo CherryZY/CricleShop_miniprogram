@@ -1,0 +1,8 @@
+<!--pages/setting/setting.wxml-->
+<scroll-view>
+
+  <view>
+    设置
+  </view>
+
+</scroll-view>

@@ -1,0 +1,33 @@
+<!-- 导入加载中模块 -->
+<import src="../../../template/load/load.wxml"/>
+
+<scroll-view wx:if="{{loading_all==true}}" style="padding-top: 45%;height: 100%">
+    <template is="loading"/>
+</scroll-view>
+<scroll-view wx:else>
+    <view wx:if="{{evaluateInfo != null && evaluateInfo != ''}}">
+        <view wx:for="{{evaluateInfo}}" wx:for-item="item" wx:for-index="idx" wx:key="k">
+            <view class="evaluation">
+                <view class="evalu_header_top" data-id="{{item.id}}" data-index="idx" bindtap="deleteEvaluation">
+                    <image src="../../../../imgs/delete_label.png"/>
+                </view>
+                <view class="evalu_header base">
+                    <view><text style="font-size: 90%">{{item.anonymityName}}</text></view>
+                    <view class="shop_level">
+                        <block wx:for="{{item.starCount}}" wx:key="index">
+                            <image id='{{index+1}}' data-in='full' src='../../../../imgs/starf.png'></image>
+                        </block>
+                        <block wx:for="{{5 - item.starCount}}" wx:key="index">
+                            <image id='{{index+1}}' data-in='empty' src='../../../../imgs/stare.png'></image>
+                        </block>
+                    </view>
+                </view>
+                <view wx:if="{{item.title != null || item.title != ''}}"><text style="color: #707070">评论标题：</text><text>{{item.title}}</text></view>
+                <view class="base"><text style="color: #707070">评论内容：</text><text>{{item.content}}</text></view>
+                <view style="font-size: 70%;color: #aaaaaa;border-top: #aaaaaa dotted 1px">评论时间：{{item.utime}}</view>
+                <view style="font-size: 70%;color: #aaaaaa;">更新时间：{{item.utime}}</view>
+            </view>
+        </view>
+    </view>
+
+</scroll-view>

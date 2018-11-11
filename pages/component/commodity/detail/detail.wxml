@@ -1,0 +1,115 @@
+<!-- 导入加载中模块 -->
+<import src="../../../template/load/load.wxml"/>
+
+<scroll-view wx:if="{{loading}}" style="padding-top: 45%;height: 100%">
+    <template is="loading"/>
+</scroll-view>
+<!-- 商品概况 -->
+<scroll-view wx:else scroll-y="true"
+             style="height:100%;width:100%;position: absolute;margin-bottom: 100rpx"
+             lower-threshold="{{lower_threshold}}"
+             bindscrolltolower="scrolltolower">
+
+    <!-- banner -->
+    <swiper indicator-dots="{{indicatorDots}}"
+            autoplay="{{autoplay}}"
+            interval="{{interval}}"
+            duration="{{duration}}"
+            style="height:70%;">
+        <block wx:for="{{commodityInfo.swiperPicUrls}}" wx:for-item="item" wx:key="unique">
+            <swiper-item>
+                <image src="{{picPrefix + item.url}}" data-src="{{item}}" bindtap="previewImage" style="height:100%;"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <view class="detail">
+        <view class="title">{{commodityInfo.commodityName}}</view>
+        <view class="short">{{commodityInfo.shortIntroduction}}</view>
+        <view class="price">
+            <view>{{commodityInfo.price}}元</view>
+            <view style="font-size: 70%;color: #999999">库存:{{commodityInfo.inventory}}</view>
+        </view>
+        <!--<view class="commodity_price">-->
+            <!--<image src="/imgs/share.png" bindtap="share_commodity"/>-->
+        <!--</view>-->
+    </view>
+    <viewc class="commodity_evalus">
+        <view class="commodity_judge" >
+            <text style="background-color: white;font-weight: bold">用户评价({{commodityInfo.evaluateCount}})</text>
+            <text style="font-size: 70%;color: #707070" bindtap = "toEvaluation">查看更多</text>
+            <!--<image src="/imgs/triangle.png"/>-->
+        </view>
+        <!-- 显示最新评价 -->
+        <view class="evaluations">
+            <view wx:if="{{commodityInfo.evaluateCount == null || commodityInfo.evaluateCount == 0}}">
+                评价为空
+            </view>
+            <view wx:else class="evaluate">
+                <view class="user_name">
+                    <text>{{commodityInfo.evaluationVO.anonymityName}}</text>
+                    <view class="shop_level">
+                        <block wx:for="{{commodityInfo.evaluationVO.starCount}}" wx:key="index">
+                            <image id='{{index+1}}' data-in='full' src='../../../../imgs/starf.png'></image>
+                        </block>
+                        <block wx:for="{{5 - commodityInfo.evaluationVO.starCount}}" wx:key="index">
+                            <image id='{{index+1}}' data-in='empty' src='../../../../imgs/stare.png'></image>
+                        </block>
+                    </view>
+                </view>
+                <view class="evalu_body">
+                    <view class="evalu_title">
+                        {{commodityInfo.evaluationVO.title}}
+                    </view>
+                    <view class="evalu_content">
+                        {{commodityInfo.evaluationVO.content}}
+                    </view>
+                    <view class="evalu_pics">
+                        <block wx:for="{{commodityInfo.evaluationVO.thumbPics}}" wx:for-item="item" wx:for-index="idx" wx:key="k">
+                            <view class="evalu_pic">
+                                <image src="{{picPrefix + item.url}}"/>
+                            </view>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </viewc>
+    <view class="commodity_judge" bindtap="toShop">
+        <text style="background-color: white;font-weight: bold">店铺: {{commodityInfo.shopName}}</text>
+        <image src="/imgs/triangle.png" bindtap="toShop"/>
+    </view>
+    <view class="commodity_detail">
+        <text style="background-color: white;font-weight: bold">商品详情</text>
+        <text>{{commodityInfo.introduction}}</text>
+        <block wx:for-items="{{commodityInfo.detailPicUrls}}" wx:key="name">
+            <image class="image_detail" src="{{picPrefix + item.url}}" style="padding-top: 2%"/>
+        </block>
+    </view>
+
+    <!-- 基于协同过滤的推荐数据 -->
+    <view class="recomms">
+        <view class="header">
+            <view>购买了此物品的人还购买了</view>
+            <!--<view style="font-family:SimHei;font-size: 90%" bindtap="goToShopList">more ></view>-->
+        </view>
+        <scroll-view scroll-x style=" width:100%;height:100%;white-space: nowrap;" >
+            <block wx:for="{{recommendTest}}"
+                   wx:for-item="item" wx:for-index="idx" wx:key="unique">
+                <image data-src="{{item}}" src="{{item}}" class="recomm_block" >
+
+                </image>
+            </block>
+        </scroll-view>
+    </view>
+
+    <!-- 底部悬浮栏 -->
+    <view class="detail-nav">
+        <image bindtap="toCar" src="/imgs/shopping-cart.png" />
+        <image bindtap="like" src="{{isLike?'/imgs/star.png':'/imgs/star_empty.png'}}" />
+        <button class="button-green" bindtap="addCart" >加入购物车</button>
+        <button class="button-red" bindtap="immeBuy">立即购买</button>
+    </view>
+
+</scroll-view>
+

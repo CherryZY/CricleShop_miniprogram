@@ -1,0 +1,4 @@
+
+<!-- 导入加载中模块 -->
+<import src="../../template/load/load.wxml"/>
+

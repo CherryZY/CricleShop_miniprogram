@@ -1,0 +1,72 @@
+
+<!-- 导入加载中模块 -->
+<import src="../../../template/load/load.wxml"/>
+
+<scroll-view>
+    <view class="collection_top">
+        <view class="{{topIndx == true?'bottom_border':''}}" data-index="1" bindtap="changeTopBar">商品</view>
+        <view class="{{topIndx == false?'bottom_border':''}}" data-index="2" bindtap="changeTopBar">商铺</view>
+    </view>
+    <scroll-view wx:if="{{loading_all}}" style="height: 100px;padding-top: 45%">
+        <template is="loading"/>
+    </scroll-view>
+    <scroll-view wx:else>
+        <!-- 有收藏 -->
+        <block wx:if="{{likedComms != null}}">
+            <!-- 商品list -->
+            <scroll-view wx:if="{{topIndx == true}}">
+                <block wx:for="{{likedComms}}" wx:for-item="item" wx:key="k" wx:for-index="idx">
+                    <view class="comm_list" >
+                        <view class="comm_list_b" data-id="{{item.id}}" bindtap="commDetail">
+                            <image src ="{{picPrefixUrl + item.thumbPicUrl}}"/>
+                            <view class="right_list">
+                                <view class="right_top">
+                                    <view class="name">{{item.commodityName}}</view>
+                                    <view style="color: #ff6600;font-size: 90%">{{item.price}}元</view>
+                                </view>
+                                <view class="introduction" style="font-size: 80%">{{item.shortIntroduction}}</view>
+                                <view style="font-size:70%;color: #999999">库存:{{item.inventory}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </scroll-view>
+            <!-- 商铺list -->
+            <scroll-view wx:else>
+                <block wx:for="{{likedShops}}" wx:for-item="item" wx:key="k" wx:for-index="idx">
+                    <view class="comm_list" >
+                        <view class="comm_list_b" style="height: 70%;" data-id="{{item.id}}" bindtap="shopDetail">
+                            <image src ="{{picPrefixUrl + item.thumbPics[0].url}}"/>
+                            <view class="right_list">
+                                <view class="right_top">
+                                    <view class="name">{{item.shopName}}</view>
+                                    <view class="shop_level">
+                                        <block wx:for="{{item.starLevel}}" wx:key="index">
+                                            <image id='{{index+1}}' data-in='full' src='../../../../imgs/starf.png'></image>
+                                        </block>
+                                        <block wx:for="{{5 - item.starLevel}}" wx:key="index">
+                                            <image id='{{index+1}}' data-in='empty' src='../../../../imgs/stare.png'></image>
+                                        </block>
+                                    </view>
+                                </view>
+                                <view class="introduction" style="font-size: 80%"><text>{{item.shortIntroduction}}</text></view>
+                                <view style="display: flex;flex-direction:row;justify-content:flex-end;font-size:70%;color: #999999">总销量:{{item.sellsCount}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </scroll-view>
+        </block>
+        <!-- 无收藏 -->
+        <block wx:else>
+            <view class="no_collection">
+                <image src="{{no_collection_icon}}"/>
+                <view>
+                    <text>无收藏商品/商铺</text>
+                </view>
+            </view>
+            <button class="no_collection_btn" bindtap="goCollection">随便逛逛</button>
+        </block>
+
+    </scroll-view>
+</scroll-view>

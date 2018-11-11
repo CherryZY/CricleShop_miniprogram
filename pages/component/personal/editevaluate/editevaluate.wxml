@@ -1,0 +1,30 @@
+<!-- 导入加载中模块 -->
+<import src="../../../template/load/load.wxml"/>
+<scroll-view>
+    <view class="newEvaluation">
+        <form bindsubmit="submitEvaluation" >
+            <view>
+                <text>评分：</text>
+                <view class="shop_level">
+                    <block wx:for="{{starLevel}}" wx:key="index">
+                        <image id='{{index+1}}' catchtap="recordStar" data-in='full' src='../../../../imgs/starf.png'></image>
+                    </block>
+                    <block wx:for="{{5 - starLevel}}" wx:key="index">
+                        <image id='{{index+1}}' catchtap="recordStar" data-in='empty' src='../../../../imgs/stare.png'></image>
+                    </block>
+                </view>
+            </view>
+            <view class="title">
+                <text style="font-size: 80%">评论标题(可选)：</text>
+                <input style="width: 90%" placeholder="评论标题" maxlength="11" name="title" value="{{title}}" auto-focus/>
+            </view>
+            <view style="width: 100%;">
+                <text style="font-size: 80%">评论内容：</text>
+                <textarea placeholder="评论内容" maxlength="255" name="content" value="{{content}}" auto-height/>
+            </view>
+            <view class="sub_btn">
+                <button formType="submit" style="background-color: #5B5B5B;color: white">提交</button>
+            </view>
+        </form>
+    </view>
+</scroll-view>

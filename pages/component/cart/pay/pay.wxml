@@ -1,0 +1,100 @@
+<import src="../../../template/load/load.wxml"/>
+
+<scroll-view wx:if="{{loading_all}}" style="height: 100px;padding-top: 45%">
+    <template is="loading"/>
+</scroll-view>
+<scroll-view wx:else xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="pay_main">
+        <!-- 商品List -->
+        <view class="commodity_list">
+            <view wx:for="{{payForCommodities}}" wx:for-index="index" wx:for-item="item" wx:key="unique"
+                  class="commodity">
+                <!-- 商品图片 -->
+                <view class="commodity_icon">
+                    <image src="{{PIC_PREFIX + item.thumbPic[0].url}}" mode="aspectFill"/>
+                </view>
+                <!-- 商品信息 -->
+                <view class="commodity_info">
+                    <text>{{item.commodityName}}</text>
+                    <!--<text style="color: #707070">size:19</text>-->
+                </view>
+                <!-- 商品价格&个数 -->
+                <view class="commodity_price_count">
+                    <text style="color: #999999">x {{item.count}}</text>
+                    <text style="color: #f60">￥{{item.price}}</text>
+                </view>
+            </view>
+        </view>
+
+        <!-- 地址Trans -->
+        <block wx:if="{{transAddress != null}}">
+            <!-- 地址Trans -->
+            <view class="address" bindtap="editAddress">
+                <image src="{{location_icon}}" class="ico"/>
+                <view class="middle_info" bindtap="editAddress">
+                    <text>{{transAddress.consigneeName}}    {{transAddress.phoneNum}}</text>
+                    <text>{{transAddress.province}}  {{transAddress.city}} {{transAddress.county}} {{transAddress.detail_location}}</text>
+                </view>
+                <image src="{{arrow_icon}}" class="arrow" />
+            </view>
+        </block>
+        <block wx:else>
+            <view class="input_trans_address" bindtap="addAddress">
+                <view style="display: flex;flex-direction: row;justify-content: space-around;font-size: 80%">
+                    <image src="{{location_icon}}" class="ico"/>
+                    <text class="recivAddress">请填入收货地址</text>
+                </view>
+                <image src="{{arrow_icon}}" class="arrow"/>
+            </view>
+        </block>
+
+        <!-- 配送方式 -->
+        <view class="trans">
+            <view class="trans_method">
+                <text style="font-size:80%">配送方式</text>
+                <view class="trans_method_right" bindtap="choose_trans">
+                    <text style="font-size:80%">{{transMethod[transIdx].text}}</text>
+                    <image src="{{pullDown_icon}}" style="width: 16px;height: 16px;"/>
+                </view>
+            </view>
+        </view>
+        <view class="{{hideTransMethod?'trans_hide':''}}">
+            <view wx:for="{{transMethod}}" wx:for-index="idx" wx:key="k" wx:for-item = "item">
+                <view class="trans_method trans_extend">
+                    <text style="font-size:70%">{{item.text}}：￥运费{{item.price}}</text>
+                    <icon wx:if="{{item.choosed}}" type="success_circle" size="20" data-index="{{idx}}" bindtap="chooseFunc"/>
+                    <icon wx:else type="circle" size="20" data-index="{{idx}}" bindtap="chooseFunc"/>
+                </view>
+            </view>
+        </view>
+
+        <!-- 发票 -->
+        <view class="invoice">
+            <text style="font-size: 80%">发票</text>
+            <view bindtap="editInvoice">
+                <text style="font-size: 70%;color: #dddddd;">正在施工...</text>
+            </view>
+        </view>
+
+        <!-- 商品金额 -->
+        <view class="commodities_price">
+            <view class="commodities_price_text">
+                <text>商品总金额</text>
+                <text style="{{item.isTotal?'color: red;':''}}">￥{{commTotalPrice}}</text>
+            </view>
+            <view class="commodities_price_text">
+                <text>运费</text>
+                <text style="{{item.isTotal?'color: red;':''}}">￥{{transPrice}}</text>
+            </view>
+            <view class="commodities_price_text">
+                <text>实付金额</text>
+                <text style="{{item.isTotal?'color: red;':''}}">￥{{totalPrice}}</text>
+            </view>
+        </view>
+
+        <!-- 付款按钮fixed -->
+        <view class="pay_fix_bar">
+            <button type="primary" bindtap="submitPay">微信安全付款</button>
+        </view>
+    </view>
+</scroll-view>

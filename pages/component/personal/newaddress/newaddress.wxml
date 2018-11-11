@@ -1,0 +1,65 @@
+
+<import src="../../../template/load/load.wxml"/>
+
+<view wx:if="{{loading_all==true}}" style="padding-top: 45%;height: 100%">
+    <template is="loading"/>
+</view>
+<view wx:else>
+    <form bindsubmit="submitConsignee">
+        <view class="consignee_setting">
+            <!-- 收货人姓名 -->
+            <view class="consignee">
+                <text>收货人姓名:</text>
+                <input placeholder="请输入姓名" name="consignee_name" value="{{consignee_name}}"/>
+            </view>
+            <!-- 手机号码 -->
+            <view class="consignee">
+                <text>手机号码:</text>
+                <input placeholder="请输入手机号码" type="number" name="phone_number" value="{{phone_num}}"/>
+            </view>
+            <!-- 省市 -->
+            <view class="consignee">
+                <text>省市:</text>
+                <view bindtap="translate">
+                    <view>{{province}} {{city}} {{county}}</view>
+                </view>
+                <view class="animation-element-wrapper" animation="{{animation}}" style="visibility:{{show?'visible':'hidden'}}"
+                      bindtap="hiddenFloatView" data-id="444">
+                    <view class="animation-element" catchtap="nono">
+                        <view style="width: 100%;position: absolute;">
+                            <text class="left-bt" catchtap="hiddenFloatView" data-id="555">取消</text>
+                            <text class="right-bt" catchtap="hiddenFloatView" data-id="666">确定</text>
+                        </view>
+                        <view class="line"></view>
+                        <picker-view indicator-style = "height: 50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
+                            <!--省-->
+                            <picker-view-column>
+                                <view wx:for="{{provinces}}" wx:key="unique">
+                                    {{item.name}}
+                                </view>
+                            </picker-view-column>
+                            <!--地级市-->
+                            <picker-view-column>
+                                <view wx:for="{{citys}}" wx:key="unique">
+                                    {{item.name}}
+                                </view>
+                            </picker-view-column>
+                            <!--区县-->
+                            <picker-view-column>
+                                <view wx:for="{{countys}}" wx:key="unique">
+                                    {{item.name}}
+                                </view>
+                            </picker-view-column>
+                        </picker-view>
+                    </view>
+                </view>
+            </view>
+            <!-- 详细地址 -->
+            <view class="consignee">
+                <text>详细地址:</text>
+                <input placeholder="街道地址"  name="detail_location" value="{{detail_location}}"/>
+            </view>
+        </view>
+        <button form-type="submit" type="primary" class="confirm_btn">确认</button>
+    </form>
+</view>

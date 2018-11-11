@@ -1,0 +1,114 @@
+<!--logs.wxml-->
+<view style = "display:flex;justify-content:space-aroud">
+  <swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="5000" duration="{{duration}}" style='width:100%;display:flex;justify-content:flex-center;'>
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150" mode =  "aspectFill"/>
+    </swiper-item>
+  </block>
+</swiper>
+</view>
+
+
+<scroll-view scroll-y style="height: 300px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" upper-threshold="100"
+scroll-into-view="yellow"
+>
+    <view id="green" class="scroll-view-item bc_green"></view>
+    <view id="red"  class="scroll-view-item bc_red"></view>
+    <view id="yellow" class="scroll-view-item bc_yellow"></view>
+    <view id="blue" class="scroll-view-item bc_blue"></view>
+</scroll-view>
+
+<view>
+  <block wx:for="{{items}}" wx:for-item="item">
+    <icon type="{{item.iconType}}" size="40"/> 
+    <text>{{item.text}}</text>
+  </block>
+  <progress percent="100" active-color='blue' backgroundColor='red' show-info active />
+</view>
+
+<view>
+  <button>啊</button>
+  <checkbox></checkbox>
+  <view class="section__title">普通选择器</view>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      当前选择：{{array[index]}}
+    </view>
+  </picker>
+
+  <view class="section">
+    <view class="section__title">日期选择器</view>
+    <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+      <view class="picker">
+        当前选择: {{date}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="section">
+    <view class="section__title">时间选择器</view>
+    <picker mode="time" value='{{index}}' start= "12:00" end = "24:59" bindchange="bindTimeChange">
+      <view class="picker">
+        当前选择: {{time}}
+      </view>
+    </picker>
+  </view>
+</view>
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="section section_gap">
+    <view class="section__title">switch</view>
+    <switch name="switch"/>
+  </view>
+  <view class="section section_gap">
+    <view class="section__title">slider</view>
+    <slider name="slider" show-value ></slider>
+  </view>
+
+  <view class="section">
+    <view class="section__title">input</view>
+    <input name="input" placeholder="please input here" />
+  </view>
+  <view class="section section_gap">
+    <view class="section__title">radio</view>
+    <radio-group name="radio-group">
+      <label><radio value="radio1"/>radio1</label>
+      <label><radio value="radio2"/>radio2</label>
+    </radio-group>
+  </view>
+  <view class="section section_gap">
+    <view class="section__title">checkbox</view>
+    <checkbox-group name="checkbox">
+      <label><checkbox value="checkbox1"/>checkbox1</label>
+      <label><checkbox value="checkbox2"/>checkbox2</label>
+    </checkbox-group>
+  </view>
+  <view class="btn-area">
+    <button form-type="submit">Submit</button>
+    <button form-type="reset">Reset</button>
+  </view>
+</form>
+
+<button type="default" bindtap="actionSheetTap">弹出action sheet</button>  
+
+
+<!-- <view class="container">
+ <view class = "item">
+ 1
+ </view>
+
+ <view class = "item">
+ 2
+ </view>
+
+ <view class = "item1">
+ 3
+ </view>
+
+ <view class = "item">
+ 4
+ </view>
+</view> -->
+

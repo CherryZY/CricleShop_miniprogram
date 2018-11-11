@@ -1,0 +1,138 @@
+
+[class*="loader-"] {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    color: inherit;
+    vertical-align: middle;
+    pointer-events: none;
+}
+
+.loadingOrder{
+    width: 100%;
+    height: 20px;
+    text-align: center;
+    color: #707070;
+}
+
+.loader-19 {
+    border-top: .2em solid currentcolor;
+    border-right: .2em solid transparent;
+    -webkit-animation: loader-19 1s linear infinite;
+    animation: loader-19 1s linear infinite;
+    border-radius: 100%;
+    position: relative;
+}
+
+@-webkit-keyframes loader-19 {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loader-19 {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/*.body {
+    text-align: center;
+    font-family: sans-serif;
+    color: #ff6600;
+}
+
+
+.box {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    font-size: 30px;
+    padding: 1em;
+    position: relative;
+    margin-bottom: .25em;
+    vertical-align: top;
+    !*-webkit-transition: .3s color, .3s border, .3s transform, .3s opacity;
+    transition: .3s color, .3s border, .3s transform, .3s opacity;*!
+}
+
+.box:hover {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.1);
+    font-size: 0;
+    padding: 0;
+    border-width: 3px;
+    !*line-height: 200px;*!
+    opacity: 1;
+    !*-webkit-transform: scale(1.2);
+    transform: scale(1.2);*!
+    z-index: 2;
+}
+
+.box:hover [class*="loader-"] {
+    !*font-size: 70px;*!
+    !*line-height: 200px;*!
+}
+
+
+.box:hover [class*="loader-"] {
+    font-size: 70px;
+    line-height: 200px;
+}
+
+
+.loader-15 {
+    background: currentcolor;
+    position: relative;
+    -webkit-animation: loader-15 1s ease-in-out infinite;
+    animation: loader-15 1s ease-in-out infinite;
+    -webkit-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+    width: .25em;
+    height: .5em;
+}
+
+.loader-15:after,
+.loader-15:before {
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background: inherit;
+    -webkit-animation: inherit;
+    animation: inherit;
+}
+
+.loader-15:before {
+    right: .5em;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+
+.loader-15:after {
+    left: .5em;
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+}
+
+@-webkit-keyframes loader-15 {
+    0%,
+    100% {
+        box-shadow: 0 0 0 currentcolor, 0 0 0 currentcolor;
+    }
+    50% {
+        box-shadow: 0 -.25em 0 currentcolor, 0 .25em 0 currentcolor;
+    }
+}
+
+@keyframes loader-15 {
+    0%,
+    100% {
+        box-shadow: 0 0 0 currentcolor, 0 0 0 currentcolor;
+    }
+    50% {
+        box-shadow: 0 -.25em 0 currentcolor, 0 .25em 0 currentcolor;
+    }
+}*/

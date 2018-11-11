@@ -1,0 +1,77 @@
+/* pages/addressmana/addressmana.wxss */
+@import "../../../template/load/load.wxss";
+page{
+    height: 100%;
+}
+
+/** 用户地址为空 */
+.address_main{
+    position: relative;
+    border-top: #dddddd solid 20rpx;
+    margin-bottom: 35px;
+}
+
+.addNewAddress_style{
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    bottom: 0px;
+}
+
+.empty_sign{
+    text-align: center;
+    margin-top: 40%;
+}
+
+.empty_sign text{
+    color: #8a8a8a;
+    text-align: center;
+}
+
+.empty_icon{
+    width: 80px;
+    height: 80px;
+    text-align: center;
+}
+
+/** 地址不为空 */
+.address_no_empty{
+}
+
+.address_single{
+    background-color: #ffffff;
+    border-bottom: #dddddd solid 15rpx;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+.address_single .body_top{
+    display: flex;
+    flex-direction: column;
+}
+
+.body_top_t{
+    font-weight: bold;
+    font-size: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.body_top_b{
+    padding-top: 3%;
+    padding-bottom: 3%;
+    font-size: 80%;
+    color: #999999;
+}
+
+.body_bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 1%;
+    font-size: 70%;
+}

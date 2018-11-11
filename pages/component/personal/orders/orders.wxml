@@ -1,0 +1,82 @@
+<!--pages/orders/orders.wxml-->
+<import src="/pages/template/load/load.wxml"/>
+
+<scroll-view>
+    <view class="collection_top">
+        <view class="{{topIndx == true?'bottom_border':''}}" data-index="1" bindtap="changeTopBar">待付款</view>
+        <view class="{{topIndx == false?'bottom_border':''}}" data-index="2" bindtap="changeTopBar">已完成</view>
+    </view>
+    <!-- loading -->
+    <scroll-view wx:if="{{loading == true}}" class="loadingShow">
+        <template is="loading"/>
+    </scroll-view>
+    <scroll-view wx:else>
+        <scroll-view wx:if="{{orders != ''}}">
+            <block wx:for="{{orders}}" wx:for-item="item" wx:key="k" wx:for-index="idx">
+                <view bindtap="toBuy" data-type="{{type}}" data-id="{{item.id}}" class="order">
+                    <view class="orderId">
+                        <view>订单编号: {{item.id}}</view>
+                        <view></view>
+                    </view>
+                    <block wx:for="{{item.commodityVOList}}" wx:for-item="item" wx:key="k" wx:for-index="idx">
+                        <view class="commlist" data-id="{{item.id}}" bindtap="toCommodityDetail">
+                            <view class="commodity_icon" >
+                                <image src="{{picPrefixUrl + item.thumbPic}}" mode="aspectFill"/>
+                            </view>
+                            <!-- 商品信息 -->
+                            <view class="commodity_info">
+                                <view class="name">{{item.commodityName}}</view>
+                            </view>
+                            <!-- 商品价格&个数 -->
+                            <view class="commodity_price_count">
+                                <text style="color: #f60">￥{{item.price}}</text>
+                                <view style="color: #999999">x {{item.count}}</view>
+                            </view>
+                            <!-- 添加/查看评论按钮 -->
+                            <view wx:if="{{type == 1}}">
+                                <view class="evalue" catchtap="evaluation" data-src="{{item}}"
+                                      wx:if="{{item.haveEvaluated == null || item.haveEvaluated == 0}}" data-type="add"><text>添加评论</text></view>
+                                <view wx:else class="evalue" catchtap="evaluation" data-src="{{item}}" data-type="detail"><text>查看评论</text></view>
+                            </view>
+                        </view>
+                    </block>
+                    <view wx:if="{{type == 1}}" class="extensionData">
+                        <view class="addressinfo_top">
+                            <view>收货人: {{item.addressInfoVO.consigneeName}}</view>
+                            <view>{{item.addressInfoVO.phoneNum}}</view>
+                        </view>
+                        <view class="addressinfo_down">
+                            收货地址: {{item.addressInfoVO.province}}  {{item.addressInfoVO.city}} {{item.addressInfoVO.county}} {{item.addressInfoVO.detailLocation}}
+                        </view>
+                        <view class="price">
+                            <view class="fee">
+                                <text style="color: #999999">商品总价:</text>
+                                <text style="color: #999999">{{item.sumPrice - item.transPrice}}元</text>
+                            </view>
+                            <view class="fee">
+                                <text style="font-size: 80%;color: #999999">运费: </text>
+                                <text style="font-size: 80%;color: #999999">{{item.transPrice}}元</text>
+                            </view>
+                            <view class="fee">
+                                <text>订单总价: </text>
+                                <text style="color: #ff6600">{{item.sumPrice}}元</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view wx:elif = "{{type == 0}}" class="extensionWidget">
+                        <view class="cancelOrder" data-index="{{idx}}" data-id="{{item.id}}" catchtap="cancelOrder">取消订单</view>
+                    </view>
+                    <view class="time">
+                        <view>创建时间:{{item.ctime}}</view>
+                        <view wx:if="{{type != 0}}">付款时间:{{item.utime}}</view>
+                    </view>
+
+                </view>
+            </block>
+        </scroll-view>
+        <scroll-view wx:else>
+            订单列表为空
+        </scroll-view>
+    </scroll-view>
+</scroll-view>
+

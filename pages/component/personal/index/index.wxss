@@ -1,0 +1,108 @@
+/* pages/personal/personal.wxss */
+
+page{
+  height: 100%;
+  width: 100%;
+}
+
+.main{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.header{
+  position: relative;
+  width: 100%;
+  height: 300rpx;
+  background-color: #8C8C8C;
+  border-bottom: 1px solid #ddd;
+}
+
+.nick_name{
+  left: 320rpx;
+  bottom: 115rpx;
+  position: absolute;
+  color: #ffffff;
+}
+
+.avatar{
+  width: 250rpx;
+  height: 230rpx;
+  left: 50rpx;
+  bottom: 35rpx;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.content_row{
+  display: flex;
+  justify-content:space-between;
+  border-bottom: solid #ddd 1rpx;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.my_orders_row{
+  font-size: 80%;
+  color: #707070;
+}
+
+.content_name{
+  font-size: 90%;
+}
+
+.right{
+  width: 16px;
+  height: 16px;
+}
+
+.wait_status{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: solid #ddd 5px;
+  padding-bottom: 10%;
+  padding-top: 5%;
+}
+
+.wait_statu_view{
+  position: relative;
+}
+
+.wait_statu_img{
+  width: 40px;
+  height: 40px;
+}
+
+.wait_statu_text{
+  position: absolute;
+  font-size: 12px;
+}
+
+/** 底部提示栏 */
+.bottom_tips{
+  position: absolute;
+  bottom: 0px;
+  color: #8a8a8a;
+  font-size: 80%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.tips{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tip{
+  border-left: white solid 30rpx;
+}
+

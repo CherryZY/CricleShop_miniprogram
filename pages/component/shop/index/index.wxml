@@ -1,0 +1,101 @@
+<!--pages/component/shop/index/index.wxml-->
+<!-- 导入加载中模块 -->
+<import src="../../../template/load/load.wxml"/>
+
+<scroll-view wx:if="{{loading_all}}" style="padding-top: 45%;height: 100px">
+    <template is="loading"/>
+</scroll-view>
+<scroll-view wx:else class="main" scroll-y="true" bindscroll="scrollFn" bindscrolltolower="scrollToUpper">
+    <!-- 店铺头部block -->
+    <view class="header">
+        <view class="header_top">
+            <view class="shop_avatar">
+                <view class="shop_avatar_block">
+                    <view class="shop_avatar_img">
+                        <image src="{{picPrefixUrl + shopBasicInfo.thumbPics[0].url}}"/>
+                    </view>
+                    <view class="shop_info">
+                        <view class="shop_base_info">
+                            <text class="shopName">{{shopBasicInfo.shopName}}</text>
+                            <view class="shop_level">
+                                <block wx:for="{{shopBasicInfo.starLevel}}" wx:key="index">
+                                    <image id='{{index+1}}' data-in='full' src='../../../../imgs/starf.png'></image>
+                                </block>
+                                <block wx:for="{{5 - shopBasicInfo.starLevel}}" wx:key="index">
+                                    <image id='{{index+1}}' data-in='empty' src='../../../../imgs/stare.png'></image>
+                                </block>
+                            </view>
+                        </view>
+                        <view class="shop_introduction">{{shopBasicInfo.shortIntroduction}}</view>
+                    </view>
+                </view>
+                <view class="shop_star">
+                    <image bindtap="addLike" src="{{isLike?'/imgs/s_star.png':'/imgs/s_e_star.png'}}" />
+                    <!--<text style="font-size: 70%;">粉丝数:0</text>-->
+                </view>
+            </view>
+            <view class="shop_contact">
+                <view style="font-size: 70%">
+                    服务热线：{{shopBasicInfo.phoneNum}}
+                </view>
+            </view>
+        </view>
+        <view class="{{arrivedPoint ? 'header_navigation_fixed':'header_navigation'}}" style="height:{{navigationHeight}}px;font-size: 80%">
+            <view class="{{choosed=='A' ? 'navigation_choosed':''}}" bindtap="chooseIndex">
+                主页
+            </view>
+            <view class="{{choosed=='B' ? 'navigation_choosed':''}}" bindtap="chooseProducts">
+                全部宝贝
+            </view>
+            <view class="{{choosed=='C' ? 'navigation_choosed':''}}" bindtap="chooseIntroduce">
+                介绍
+            </view>
+        </view>
+    </view>
+
+    <!-- 店铺main_block -->
+    <view class="shop_main">
+        <!-- 主页 -->
+        <view wx:if="{{choosed=='A'}}">
+            <view style="width: 100%;height: 100%">
+                <block wx:if="{{shopBasicInfo.detailPicUrls == [] || shopBasicInfo.detailPicUrls == null}}">
+                    <text style="padding-top:40%;color: #aaaaaa;text-align: center;font-size: 80%">无商品数据</text>
+                </block>
+                <block wx:if="{{shopBasicInfo.detailPicUrls != null}}" wx:for="{{shopBasicInfo.detailPicUrls}}" wx:for-item="item" wx:key="k" wx:for-index="idx">
+                    <view class="shopDetail">
+                        <image src="{{picPrefixUrl + item.url}}"/>
+                    </view>
+                </block>
+            </view>
+        </view>
+        <!-- 产品 -->
+        <view wx:elif="{{choosed=='B'}}" class="produce">
+            <block wx:if="{{produces == '[]' || produces == null}}">
+                <text style="padding-top:40%;color: #aaaaaa;text-align: center;font-size: 80%">无商品数据</text>
+            </block>
+            <block wx:if = "{{ ploading == false }}" wx:for="{{produces}}" wx:for-item="item"
+                   wx:for-index="idx" wx:key="k">
+                <view class="produce_item">
+                    <image src="{{picPrefixUrl + item.thumbPicUrl}}"/>
+                    <view class="commName">{{item.commodityName}}</view>
+                    <view class="down_block">
+                        <view style="font-size: 90%;color: #999999">销量:{{item.sellsCount}}</view>
+                        <view><text style="color: #ff6600">{{item.price}}元</text></view>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{ ploading == true }}" class="ploading">
+                <template is="loading"/>
+            </block>
+        </view>
+        <!-- 介绍 -->
+        <view wx:elif="{{choosed=='C'}}">
+            {{shopBasicInfo.introduction}}
+        </view>
+        <!-- 联系我们 -->
+        <view wx:else>
+            联系我们
+        </view>
+    </view>
+    
+</scroll-view>

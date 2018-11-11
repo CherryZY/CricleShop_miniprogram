@@ -1,0 +1,67 @@
+{
+  "pages":[
+    "pages/component/index/index",
+
+    "pages/component/searched/searched",
+
+    "pages/component/shop/index/index",
+    "pages/component/shop/settled/settled",
+
+    "pages/component/commodity/detail/detail",
+    "pages/component/commodity/evaluation/evaluation",
+    "pages/component/commodity/list/list",
+
+    "pages/component/cart/index/index",
+    "pages/component/cart/pay/pay",
+    "pages/component/cart/paysuccess/paysuccess",
+
+    "pages/component/personal/index/index",
+    "pages/component/personal/addressmana/addressmana",
+    "pages/component/personal/setting/setting",
+    "pages/component/personal/about/about",
+    "pages/component/personal/orders/orders",
+    "pages/component/personal/editevaluate/editevaluate",
+    "pages/component/personal/evaluatedetail/evaluatedetail",
+
+    "pages/component/personal/newaddress/newaddress",
+    "pages/component/personal/collection/collection",
+    "pages/component/personal/contactus/contactus"
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#5B5B5B",
+    "navigationBarTitleText": "微圈儿",
+    "navigationBarTextStyle":"light",
+    "enablePullDownRefresh": true
+  },
+  "tabBar":{
+    "position":"bottom",
+    "selectedColor":"#2c2c2c",
+    "list":[
+      {
+        "pagePath":"pages/component/index/index",
+        "iconPath":"imgs/home.png",
+        "selectedIconPath":"imgs/home_full.png",
+        "text":"首页"
+      },
+      {
+        "pagePath": "pages/component/cart/index/index",
+        "iconPath": "imgs/cart.png",
+        "selectedIconPath": "imgs/cart_full.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/component/personal/index/index",
+        "iconPath": "imgs/personal.png",
+        "selectedIconPath": "imgs/personal_full.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "downloadFile": 50000
+  },
+  "debug":true
+}
